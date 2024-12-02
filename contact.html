@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+</head>
+<body>
+
+    <h1>Contact Form</h1>
+
+    <form method="post" action="submit.php">
+
+        <label for="first">First Name:</label>
+        <input type="text" name="first" id="first">
+        <div id="first-error"></div>
+
+        <br>
+
+        <label for="last">Last Name:</label>
+        <input type="text" name="last" id="last">
+        <div id="last-error"></div>
+        
+        <br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email">
+        <div id="email-error"></div>
+
+        <br>
+
+        <label for="message">Message:</label>
+        <textarea name="message" id="message"></textarea>
+        <div id="message-error"></div>
+
+        <br>
+
+        <input type="submit" value="Submit" id="submit">
+
+    </form>
+
+    <script>
+
+        var submit = document.getElementById("submit");
+        submit.addEventListener("click",function(e){
+            var error = 0;
+            var first = document.getElementById("first");
+            var firstError = document.getElementById("first-error");
+            firstError.innerHTML="";
+            var last = document.getElementById("last");
+            var lastError = document.getElementById("last-error");
+            lastError.innerHTML="";
+            var email = document.getElementById("email");
+            var emailError = document.getElementById("email-error");
+            var emailPattern = /^\S+@\S+\.\S+$/;
+            emailError.innerHTML="";
+            var message = document.getElementById("message");
+            var messageError = document.getElementById("message-error");
+            messageError.innerHTML="";
+
+            if(first.value === ""){
+                error++;
+                firstError.innerHTML ="P lease enter a first name";
+            }
+
+            if(last.value === ""){
+                error++;
+                lastError.innerHTML ="Please enter a last name";
+            } 
+
+            if(email.value === "")
+            {   error++;
+                emailError.innerHTML = "Please enter an email address";
+            }
+            else if(!emailPattern.test(email.value))
+            {
+                emailError.innerHTML = "Please enter a valid email address";
+            }
+
+            if(message.value === ""){
+                error++;
+                messageError.innerHTML ="Please enter a message";
+            } 
+            
+
+            // console.log(first.value);
+            // console.log(last.value);
+            // console.log(email.value);
+            // console.log(message.value);
+            // console.log("Submit was clicked!");
+
+            if(errors>0)
+            {
+            e.preventDefault();
+            }
+
+        });
+    
+
+    </script>
+    
+</body>
+</html>
